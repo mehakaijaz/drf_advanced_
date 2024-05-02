@@ -20,7 +20,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles','api',
-    'products','rest_framework',
+    'products','rest_framework','rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -109,3 +109,29 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+#default drf settings
+
+# auth_classes=[
+#     "rest_framework.authentication.SessionAuthentication",
+#          "api.authentication.TokenAuthentication",
+# ]
+
+# if DEBUG:
+#    auth_classes= [
+#     "api.authentication.TokenAuthentication",    
+#     ]
+
+REST_FRAMEWORK={
+    #can also be written as
+   # "DEFAULT_AUTHENTICATION_CLASSES": auth_classes
+     "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication",
+         "api.authentication.TokenAuthentication",#isme humne app then file then classname se auths pure project k lie save ki h
+         #"rest_framework_simplejwt.authentication.JWTAuthentication",
+    ],
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticatedOrReadOnly"#only get is used here
+    ],
+    # "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
+    # "PAGE_SIZE": 10
+}
