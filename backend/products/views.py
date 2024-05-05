@@ -30,7 +30,7 @@ class ProductListCreateAPIView(
         #or None
         if content is None:
             content=title
-        serializer.save(content=content)
+        serializer.save(content=content)#similar to form.save()and model.save()
         
 #         #send a django signals
 
